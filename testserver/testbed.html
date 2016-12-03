@@ -236,16 +236,11 @@ DAEDABcBDQEdAgYB
 
     <!-- This is a simple test script. The content comes from sample.py
          in the testserver directory -->
-<<<<<<< HEAD
-    <script id="batavia-sample" type="application/python-bytecode">
-{{ samplecode }}
-=======
     <script
         id="batavia-sample"
         type="application/python-bytecode"
         data-filename="{{ modules.sample.filename }}">
 {{ modules.sample.compiled }}
->>>>>>> 84bd4db3dcc911daec8fba2f77ddcfefa9ae86a6
     </script>
 
     <!-- This is a second module module that can be imported. The content
@@ -322,18 +317,6 @@ function pystone(loops) {
     vm.run('test.pystone', [loops]);
     console.log('done.');
 }
-<<<<<<< HEAD
-
-// Now define a stdout function that will output to the page.
-function stdout(content) {
-    var pre = document.getElementById('stdout');
-    pre.textContent = pre.textContent + content;
-}
-
-batavia.stdout = stdout;
-batavia.stderr = stdout;
-=======
->>>>>>> 84bd4db3dcc911daec8fba2f77ddcfefa9ae86a6
     </script>
 
 </head>

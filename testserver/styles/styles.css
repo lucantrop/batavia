@@ -38,14 +38,6 @@ h3 {
 }
 
 
-<<<<<<< HEAD
-#stdout{
-    background-color: #fff;
-}
-
-p, button {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-=======
 #pyconsole {
     display: block;
     overflow-y: scroll;
@@ -64,7 +56,6 @@ p, button {
 p,
 button {
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
->>>>>>> 84bd4db3dcc911daec8fba2f77ddcfefa9ae86a6
 }
 
 button, input{

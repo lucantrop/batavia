@@ -436,20 +436,6 @@ class TimeTests(TranspileTestCase):
         print(time.gmtime())
         """)
 
-<<<<<<< HEAD
-        # set up a test directory
-        test_dir = os.path.join(os.path.dirname(__file__), '..', 'temp')
-        try:
-            os.mkdir(test_dir)
-        except FileExistsError:
-            pass
-        # run as both JS and Python
-        outputs = [
-            runAsJavaScript(test_dir, test_str, js={}),
-            runAsPython(test_dir, test_str)
-        ]
-        print(outputs)
-=======
         # set up a temp directory
         self.makeTempDir()
 
@@ -459,7 +445,6 @@ class TimeTests(TranspileTestCase):
         js_out = self.runAsJavaScript(test_str, js={})
         outputs = [py_out, js_out]
 
->>>>>>> 84bd4db3dcc911daec8fba2f77ddcfefa9ae86a6
         raw_times = [out.split('\n')[2] for out in outputs]  # each item will be a string representation of struct_time
 
         # regex to parse struct_time

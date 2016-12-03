@@ -962,9 +962,6 @@ class NativeImportTests(TranspileTestCase):
             Done.
             """)
 
-<<<<<<< HEAD
-=======
-
 class BuiltinsImportTests(TranspileTestCase):
     def test_import_builtins(self):
         self.assertCodeExecution("""
@@ -980,7 +977,6 @@ class BuiltinsImportTests(TranspileTestCase):
             print("Done")
             """)
 
->>>>>>> 84bd4db3dcc911daec8fba2f77ddcfefa9ae86a6
     def test_import_from_builtins_as(self):
         self.assertCodeExecution("""
             from builtins import abs as _abs
