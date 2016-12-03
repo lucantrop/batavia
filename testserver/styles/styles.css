@@ -38,12 +38,33 @@ h3 {
 }
 
 
+<<<<<<< HEAD
 #stdout{
     background-color: #fff;
 }
 
 p, button {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+=======
+#pyconsole {
+    display: block;
+    overflow-y: scroll;
+    padding: 5px;
+    min-height: 100px;
+    max-height: 300px;
+    height: auto;
+    background-color: #fff;
+}
+
+#pyconsole span.error {
+    font-weight: bold;
+    color: #b00;
+}
+
+p,
+button {
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+>>>>>>> 84bd4db3dcc911daec8fba2f77ddcfefa9ae86a6
 }
 
 button, input{
