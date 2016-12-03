@@ -23,32 +23,13 @@ def bytecode(sourcefile):
     except Exception as e:
         print(e)
         return {'error': str(e)}
-    return {
-        'compiled': payload,
-        'filename': sourcefile
-    }
+    return {'compiled': payload}
 
 
 def home(request):
     ctx = {
-        'modules': {
-            'sample': bytecode('sample.py'),
-            'other': bytecode('other.py'),
-            'submodule': {
-                'init': bytecode('submodule/__init__.py'),
-                'modulea': bytecode('submodule/modulea.py'),
-                'moduleb': bytecode('submodule/moduleb.py'),
-                'modulec': bytecode('submodule/modulec.py'),
-                'moduled': {
-                    'init': bytecode('submodule/moduled/__init__.py'),
-                    'submoduled': bytecode('submodule/moduled/submoduled.py'),
-                },
-                'subsubmodule': {
-                    'init': bytecode('submodule/subsubmodule/__init__.py'),
-                    'submodulea': bytecode('submodule/subsubmodule/submodulea.py'),
-                }
-            }
-        }
+        'samplecode': bytecode('sample.py'),
+        'othercode': bytecode('other.py'),
     }
     if request.method.lower() == 'post' and request.POST['code']:
         tempfd, tempname = tempfile.mkstemp()

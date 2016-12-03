@@ -9,28 +9,7 @@ batavia.VirtualMachine = function(loader) {
 
     if (loader === undefined) {
         this.loader = function(name) {
-            // Find the script element with the ID matching the
-            // fully qualified module name (e.g., batavia-foo.bar.whiz)
-            var element = document.getElementById('batavia-' + name);
-            if (element === null) {
-                return null;
-            }
-
-            // Look for the filename in the data-filename
-            // attribute of script tag.
-            var filename;
-            if (element.dataset) {
-                filename = element.dataset['filename'];
-            } else {
-                filename = "<input>";
-            }
-
-            // Strip all the whitespace out of the text content of
-            // the script tag.
-            return {
-                'bytecode': element.text.replace(/(\r\n|\n|\r)/gm, "").trim(),
-                'filename': new batavia.types.Str(filename)
-            };
+            return document.getElementById('batavia-' + name).text.replace(/(\r\n|\n|\r)/gm, "").trim();
         };
     } else {
         this.loader = loader;
@@ -493,7 +472,7 @@ batavia.VirtualMachine.prototype.build_dispatch_table = function() {
 batavia.VirtualMachine.prototype.run = function(tag, args) {
     try {
         var payload = this.loader(tag);
-        var code = batavia.modules.marshal.load_pyc(this, payload.bytecode);
+        var code = batavia.modules.marshal.load_pyc(this, payload);
 
         // Set up sys.argv
         batavia.modules.sys.argv = new batavia.types.List(['batavia']);
@@ -506,7 +485,7 @@ batavia.VirtualMachine.prototype.run = function(tag, args) {
 
     } catch (e) {
         if (e instanceof batavia.builtins.BataviaError) {
-            batavia.stderr(e.msg);
+            console.log(e.msg);
         } else {
             throw e;
         }
@@ -521,7 +500,7 @@ batavia.VirtualMachine.prototype.run = function(tag, args) {
 batavia.VirtualMachine.prototype.run_method = function(tag, args, kwargs, f_locals, f_globals) {
     try {
         var payload = this.loader(tag);
-        var code = batavia.modules.marshal.load_pyc(this, payload.bytecode);
+        var code = batavia.modules.marshal.load_pyc(this, payload);
 
         var callargs = new batavia.types.JSDict();
         for (var i = 0, l = args.length; i < l; i++) {
@@ -539,7 +518,7 @@ batavia.VirtualMachine.prototype.run_method = function(tag, args, kwargs, f_loca
 
     } catch (e) {
         if (e instanceof batavia.builtins.BataviaError) {
-            batavia.stderr(e.msg);
+            console.log(e.msg);
         } else {
             throw e;
         }
@@ -839,7 +818,7 @@ batavia.VirtualMachine.prototype.run_code = function(kwargs) {
             } else {
                 trace.push(this.last_exception.value.name);
             }
-            batavia.stderr(trace.join('\n'));
+            console.log(trace.join('\n'));
             this.last_exception = null;
         } else {
             throw e;

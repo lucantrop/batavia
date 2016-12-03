@@ -1,12 +1,15 @@
 
 batavia.types.Module = function() {
-    function Module(name, filename, package) {
+    function Module(name, locals) {
         this.__name__ = name;
-        this.__file__ = filename;
-        this.__package__ = package;
+        for (var key in locals) {
+            if (locals.hasOwnProperty(key)) {
+                this[key] = locals[key];
+            }
+        }
     }
 
-    Module.prototype = Object.create(batavia.types.JSDict.prototype);
+    Module.prototype = Object.create(Object.prototype);
     Module.prototype.__class__ = new batavia.types.Type('module');
 
     return Module;

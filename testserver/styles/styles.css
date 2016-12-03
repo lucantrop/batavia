@@ -1,10 +1,11 @@
 .warning {
-    margin: 10px 30px;
+    margin-left, margin-right: 30px;
+    margin-top, margin-bottom: 10px;
     font-size: 80%;
 }
 
-.warning.important {
-    color: #b00;
+.warning.important{
+    color: #bb0000;
 }
 
 @font-face {
@@ -12,19 +13,16 @@
     src: url(/static/testserver/styles/cutive/Cutive-Regular.ttf);
 }
 
-body {
-    margin: 20px;
+body{
     background-color: #eceeef;
-    color: #373a3c;
     line-height: 1.5;
+    color: #373a3c;
+    margin: 20px;
 }
 
-h1,
-h2,
-h3,
-h4 {
-    font-weight: normal;
+h1, h2, h3, h4 {
     font-family: cutive_regular;
+    font-weight: normal;
 }
 
 h1 {
@@ -40,45 +38,24 @@ h3 {
 }
 
 
-#stdout {
-    display: block;
-    overflow-y: scroll;
-    padding: 5px;
-    min-height: 100px;
-    max-height: 300px;
-    height: auto;
+#stdout{
     background-color: #fff;
 }
 
-#stdout span.error {
-    font-weight: bold;
-    color: #b00;
+p, button {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-p,
-button {
-    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-}
-
-button,
-input {
-    display: inline-block;
-    margin: 4px;
-    padding: 10px;
-    border: none;
+button, input{
     background-color: #373a3c;
+    border: none;
+    font-weight: bold;
     color: white;
+    padding: 10px;
     text-align: center;
     text-decoration: none;
-    font-weight: bold;
-}
-
-button:focus,
-button:hover,
-input:focus,
-input:hover {
-    background-color: #008d38;
-    cursor: pointer;
+    display: inline-block;
+    margin: 4px;
 }
 
 .fa-circle {
@@ -89,7 +66,7 @@ hr {
     border: 1px solid #fff;
 }
 
-.indent_block {
+.indent_block{
     margin: 20px;
-    margin-bottom: 50px;
+    margin-bottom:50px;
 }
