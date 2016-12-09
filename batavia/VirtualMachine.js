@@ -27,7 +27,7 @@ var VirtualMachine = function(args) {
                 } else {
                     return {
                         'javascript': element
-                    }
+                    };
                 }
             }
 
@@ -672,7 +672,7 @@ VirtualMachine.prototype.make_frame = function(kwargs) {
             '__builtins__': builtins,
             '__name__': '__main__',
             '__doc__': null,
-            '__package__': null,
+            '__package__': null
         });
     }
     f_locals.update(callargs);
@@ -1300,15 +1300,26 @@ VirtualMachine.prototype.byte_COMPARE_OP = function(opnum) {
 VirtualMachine.prototype.byte_LOAD_ATTR = function(attr) {
     var obj = this.pop();
     var val;
-    if (obj.__getattr__ === undefined) {
+
+    if (obj.__getattribute__ === undefined) {
         val = obj[attr];
         if (val === undefined) {
-            throw new builtins.AttributeError(
-                "'" + obj.__class__.__name__ + "' object has no attribute '" + attr + "'"
-            );
+            if (obj.__getattr__ === undefined) {
+                throw new builtins.AttributeError(
+                    "'" + obj.__class__.__name__ + "' object has no attribute '" + attr + "'"
+                );
+            } else if (obj.__getattr__ instanceof Function) {
+                val = obj.__getattr__(attr);
+            } else if (obj.__getattr__ instanceof types.Function) { // Shouldn't these already be methods?
+                var getattr_method = new types.Method(obj, obj.__getattr__);
+                val = callables.run_callable(this, getattr_method.__call__, [attr], new types.JSDict());
+            }
         }
-    } else {
-        val = obj.__getattr__(attr);
+    } else if (obj.__getattribute__ instanceof Function) {
+        val = obj.__getattribute__(attr);
+    } else if (obj.__getattribute__ instanceof types.Function){
+        var getattribute_method = new types.Method(obj, obj.__getattribute__);
+        val = callables.run_callable(this, getattribute_method.__call__, [attr], new types.JSDict());
     }
 
     if (val instanceof types.Function) {
