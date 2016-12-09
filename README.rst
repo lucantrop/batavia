@@ -17,8 +17,8 @@ Batavia
 .. image:: https://img.shields.io/pypi/l/batavia.svg
     :target: https://github.com/pybee/batavia/blob/master/LICENSE
 
-.. image:: https://travis-ci.org/pybee/batavia.svg?branch=master
-    :target: https://travis-ci.org/pybee/batavia
+.. image:: https://circleci.com/gh/pybee/batavia.svg?style=shield&circle-token=:circle-token
+    :target: https://circleci.com/gh/pybee/batavia
 
 .. image:: https://badges.gitter.im/pybee/general.svg
     :target: https://gitter.im/pybee/general
@@ -47,23 +47,34 @@ Check the `Setting up your environment
 Downloading and Installing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Clone the code repos::
+1. Clone the code repositories::
 
    $ mkdir pybee
    $ cd pybee
    $ git clone https://github.com/pybee/batavia
-   $ git clone https://github.com/pybee/ouroboros
 
-2. Setup a virtualenv (for other environments, see `Getting Started <https://batavia.readthedocs.io/en/latest/intro/tutorial-0.html>`_)::
+2. Setup a virtualenv (for other environments, see `Getting Started <https://batavia.readthedocs.io/en/latest/intro/tutorial-0.html>`_).
+
+Linux/Unix/Mac::
 
    $ virtualenv venv
    $ . venv/bin/activate
    $ cd batavia
    $ pip install -e .
 
-3. Run the :code:`make` script to generate the combined Batavia JavaScript files::
+Windows::
 
-   $ make
+   > virtualenv venv
+   > venv\Scripts\activate
+   > cd batavia
+   > pip install -e .
+
+3. Install `Node.js <https://nodejs.org>`_. You must have a recent version of
+   Node; we do our testing using v6.9.1. Once you've installed Node, you can
+   use it to install the Javascript dependencies and compile the Batavia
+   library::
+
+   $ npm install
 
 For more detailed setup instructions, see the `Getting Started tutorial <https://batavia.readthedocs.io/en/latest/intro/tutorial-0.html>`_
 
@@ -77,7 +88,7 @@ After you have setup the local installation of Batavia, you can now run Python i
     $ pip install -r requirements.txt
     $ ./manage.py runserver
 
-then open a web browser at `http://localhost:8080 <http://localhost:8080>`_
+then open a web browser at `http://localhost:8000 <http://localhost:8000>`_
 
 For more detailed instructions, see the `Python In The Browser
 <http://batavia.readthedocs.io/en/latest/intro/tutorial-1.html>`_ guide.
